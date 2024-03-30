@@ -1,0 +1,37 @@
+name: Create Release with SSL
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_release_with_ssl:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Generate SSL certificate
+      run: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl.key -out ssl.crt -subj "/CN=mydomain.com/O=My Company Name/C=US"
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    
+    - name: Build Docker image
+      run: |
+        docker build -t myapp --build-arg SSL_CERT=ssl.crt --build-arg SSL_KEY=ssl.key .
+    
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0.0
+        release_name: Release v1.0.0
+        body: |
+          This is the first release.
+        draft: false
+        prerelease: false
