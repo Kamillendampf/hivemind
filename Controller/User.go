@@ -47,7 +47,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 func RegisterUser(w http.ResponseWriter, r *http.Request) {
 
-	if SecuredMiddleware(r) && r.Method == "POST" {
+	if r.Method == "POST" {
 		var _user structs.User
 		err := json.NewDecoder(r.Body).Decode(&_user)
 		if err != nil && err != io.EOF {

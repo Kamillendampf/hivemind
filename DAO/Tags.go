@@ -26,7 +26,7 @@ func InsertTag(t *structs.Tag) {
 
 func GetTags() []structs.Tag {
 	var tags []structs.Tag
-	if err := db.Find(&tags); err != nil {
+	if err := db.Raw("SELECT * FROM tags").Scan(&tags); err != nil {
 		log.Println(err)
 	}
 	return tags

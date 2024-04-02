@@ -13,9 +13,10 @@ var db *gorm.DB
 
 func init() {
 	database()
+
 	_connectGormDataBase()
 
-	err := db.AutoMigrate(structs.User{}, structs.Questions{}, structs.Answers{})
+	err := db.AutoMigrate(structs.User{}, structs.Questions{}, structs.Answers{}, structs.Tag{})
 	if err != nil {
 		log.Fatal("Until auto migrate form database something went wrong Error: " + err.Error())
 		return

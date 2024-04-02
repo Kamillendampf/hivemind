@@ -9,6 +9,9 @@ import (
 	"net/http"
 )
 
+func init() {
+	CreateDefaultSystemTags()
+}
 func GetTags(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		response, err := json.Marshal(Service.GetTags())

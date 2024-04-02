@@ -3,13 +3,12 @@ package main
 import (
 	"awesomeProject/Controller"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 )
 
-const file = "/etc/hivemind/server.config"
+const file = "../Assents/server.config"
 const serverError string = "Server failed with failure code: "
 
 type Config struct {
@@ -21,19 +20,18 @@ type Config struct {
 var config Config
 
 func init() {
-	loadConfig(file)
-	Controller.CreateDefaultSystemTags() // This is called for initialize the default tags.
+	//loadConfig(file)
 }
 
 func main() {
-	fmt.Printf("Server is listening on Port %s \n", config.Port)
+	log.Printf("Server is listening on Port %s \n", config.Port)
 
 	//Core-API
 	http.HandleFunc("/", Controller.LandingPageHandler)
 
 	http.HandleFunc("/login", Controller.Login)
 	http.HandleFunc("/registerUser", Controller.RegisterUser)
-	http.HandleFunc("createQuestion", Controller.CreateQuestion)
+	http.HandleFunc("/createQuestion", Controller.CreateQuestion)
 	http.HandleFunc("/getQuestions", Controller.GetQuestion)
 	http.HandleFunc("/createAnswer", Controller.CreateAnswer)
 	http.HandleFunc("/getAnswers", Controller.GetAnswers)
@@ -42,8 +40,8 @@ func main() {
 	http.HandleFunc("/createTag", Controller.CreateTag)
 
 	//creating server
-	err := http.ListenAndServeTLS(config.Port, config.Cert, config.Key, nil)
-	//err := http.ListenAndServe("localhost:8080", nil)  //This should be only used in development mode!! Dont use it in for production
+	//err := http.ListenAndServeTLS(config.Port, config.Cert, config.Key, nil)
+	err := http.ListenAndServe("localhost:8080", nil) //This should be only used in development mode!! Dont use it in for production
 	if err != nil {
 		log.Fatal(serverError, err)
 		os.Exit(1)
