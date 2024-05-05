@@ -52,7 +52,6 @@ jobs:
         echo "WORKDIR /app" >> Dockerfile
         echo "COPY run /app/"
         echo "CMD [\"/bin/bash\"]" >> Dockerfile
-        echo "CMD ["go", "test", "./..."]" >> Dockerfile
         
     - name : Show Dockerfile
       run: cat Dockerfile
@@ -68,6 +67,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4#
     
-    - name: Docker Run
-      run: docker run hivemind:latest 
+    - name: Run Test
+      run: go test -v
+    - name: Run Code Coverage
+      run: go test -cover
 
