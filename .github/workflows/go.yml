@@ -83,6 +83,7 @@ jobs:
         required_coverage=80
         if (( $(echo "$coverage < $required_coverage" | bc -l) )); then
             color="red"
+            exit 1
         else
           color="green"
         fi
