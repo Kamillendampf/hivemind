@@ -60,5 +60,5 @@ jobs:
       run: |
         docker build -t hivemind:latest .
     - name: Docker Run
-      run: docker run App 
+      run: docker run hivemind:latest 
 
