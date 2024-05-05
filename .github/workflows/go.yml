@@ -74,7 +74,7 @@ jobs:
     - name: Code Coverge
       run: | 
         go test -cover >> cov 
-        grep "[0-100.0-100] cov > cov
+        grep -oE '[0-9]+\.[0-9]+ cov >> cov
          current_coverage=$(cat cov)
         if [ $current_coverage -lt 80 ]; then
           echo "Error: Code coverage is below the required threshold ($required_coverage%)"
