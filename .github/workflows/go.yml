@@ -50,6 +50,7 @@ jobs:
       run: |
         echo "FROM ubuntu:latest" >> Dockerfile
         echo "WORKDIR /app" >> Dockerfile
+        echo "COPY run /app/"
         echo "CMD [\"/bin/bash\"]" >> Dockerfile
         
     - name : Show Dockerfile
@@ -57,7 +58,7 @@ jobs:
             
     - name: Build Docker
       run: |
-        docker build -t App .
+        docker build -t hivemind:latest .
     - name: Docker Run
       run: docker run App 
 
