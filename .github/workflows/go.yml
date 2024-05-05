@@ -70,5 +70,7 @@ jobs:
     - name: Run Test
       run: go test -v
     - name: Run Code Coverage
-      run: go test -cover
+      run: go test -cover >> cov
+    - name: Code Coverge
+      run: cat cov
 
