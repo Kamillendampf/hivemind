@@ -61,8 +61,8 @@ jobs:
 
     - name: Push changes to current repository
       run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          git config --global user.email "raphael@hhaerle.de"
+          git config --global user.name "Raphael Härle"
           git add .
           git commit -m "Update files"
           git push origin $GITHUB_REF
