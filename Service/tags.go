@@ -46,5 +46,5 @@ func (f F) convertJson() []string {
 }
 
 func (f F) toString() string {
-	return fmt.Sprintf("%s", f)
+	return String(f)
 }
