@@ -57,14 +57,7 @@ jobs:
             
     - name: Build Docker
       run: |
-        docker build -t my_go_app .
+        docker build -t App .
+    - name: Docker Run
+      run: docker run App 
 
-    - name: Push changes to current repository
-      run: |
-          git config --global user.email "raphael@hhaerle.de"
-          git config --global user.name "Raphael Härle"
-          git add .
-          git commit -m "Update files"
-          git push origin $GITHUB_REF
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
