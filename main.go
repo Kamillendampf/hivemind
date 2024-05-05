@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-const file = "../Assents/server.config"
+//const file = "../Assents/server.config"
 const serverError string = "Server failed with failure code: "
 
 type Config struct {
@@ -56,7 +56,7 @@ Type: private
 This function loads the configuration file for tls connections.
 The path of the configuration file is default set on "/etc/hivemind/server.config". Change that if it is necessary.
 */
-func loadConfig(file string) {
+/*func loadConfig(file string) {
 	_file, err := os.Open(file)
 	if err != nil {
 		log.Fatal("Error until reading Configuration file: error code: " + err.Error())
@@ -69,4 +69,4 @@ func loadConfig(file string) {
 	if err != nil {
 		log.Fatal("error ocured until decodig file to struct Config with error code: " + err.Error())
 	}
-}
+}*/
