@@ -30,8 +30,8 @@ jobs:
 
     - name: Create Dockerfile
       run: |
-        echo: "FROM ubuntu:latest" > Dockerfile
-        echo: "WORKDIR /app" > Dockerfile
+        echo: "FROM ubuntu:latest" >> Dockerfile
+        echo: "WORKDIR /app" >> Dockerfile
         
     - name : Show Dockerfile
       run: cat Dockerfile
