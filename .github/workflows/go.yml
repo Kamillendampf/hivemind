@@ -38,8 +38,17 @@ jobs:
       uses: actions/setup-go@v4
 
     - name: Build GoApp
-      run: go build -o run
-  
+      run: |
+          go build -o run
+          if [ $? -eq 0 ]; then
+            build_status="passing"
+            color="green"
+          else
+            build_status="failing"
+            color="red"
+          fi
+          sed -i "s/^Build status: .*$/<span style=\"color:$color\">Build status: $build_status<\/span>/" README.md
+          
   docker:
     runs-on: ubuntu-latest
     needs: build
@@ -53,9 +62,6 @@ jobs:
         echo "COPY run /app/"
         echo "CMD [\"/bin/bash\"]" >> Dockerfile
         
-    - name : Show Dockerfile
-      run: cat Dockerfile
-            
     - name: Build Docker
       run: |
         docker build -t hivemind:latest .
@@ -73,11 +79,12 @@ jobs:
       run: go test -cover
     - name: Code Coverge
       run: | 
-        go test -cover >> cov 
-        grep -oE '[0-9]+\.[0-9]+ cov >> cov
-         current_coverage=$(cat cov)
-        if [ $current_coverage -lt 80 ]; then
-          echo "Error: Code coverage is below the required threshold ($required_coverage%)"
-          exit 1
+        coverage=$(go test -cover | grep -oE '[0-9]+\.[0-9]+')
+        required_coverage=80
+        current_coverage=$(cat cov)
+        if (( $(echo "$coverage < $required_coverage" | bc -l) )); then
+            color="red"
+        else
+          color="green"
         fi
-
+        sed -i "s/^Code coverage: [0-9]+\.[0-9]+%$/<span style=\"color:$color\">Code coverage: $coverage%<\/span>/" README.md
