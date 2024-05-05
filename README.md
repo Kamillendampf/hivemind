@@ -1,2 +1,2 @@
-[![Build Status](https://github.com/dein-benutzername/dein-repository/workflows/CI/badge.svg)]([https://github.com/Kamillendampf/hivemind.git/actions)
+[![Go](https://github.com/Kamillendampf/hivemind/actions/workflows/go.yml/badge.svg)](https://github.com/Kamillendampf/hivemind/actions/workflows/go.yml)
 
