@@ -81,7 +81,6 @@ jobs:
       run: | 
         coverage=$(go test -cover | grep -oE '[0-9]+\.[0-9]+')
         required_coverage=80
-        current_coverage=$(cat cov)
         if (( $(echo "$coverage < $required_coverage" | bc -l) )); then
             color="red"
         else
