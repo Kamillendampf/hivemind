@@ -66,4 +66,5 @@ jobs:
           git add .
           git commit -m "Update files"
           git push origin $GITHUB_REF
-
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
