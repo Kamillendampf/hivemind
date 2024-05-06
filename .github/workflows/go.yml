@@ -63,7 +63,8 @@ jobs:
         echo "FROM ubuntu:latest"
         echo "WORKDIR /app"
         echo "COPY --from=builder /go/src/app/main ."
-        echo "CMD ["ls"]" >> Dockerfile
+        echo "RUN ls"
+        echo "CMD [\"/app/run\"]" >> Dockerfile
         
     - name: Build Docker
       run: |
