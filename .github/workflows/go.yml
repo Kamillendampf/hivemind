@@ -58,12 +58,12 @@ jobs:
       run: |
         echo "FROM golang:latest  AS builder" >> Dockerfile
         echo "WORKDIR /go/src/app" >> Dockerfile
-        echo "COPY . ."
-        echo "Run go build -o main"
-        echo "FROM ubuntu:latest"
-        echo "WORKDIR /app"
-        echo "COPY --from=builder /go/src/app/main app/"
-        echo "CMD ["echo", "Die Ausführung des Containers wurde abgeschlossen."]"
+        echo "COPY . ." >> Dockerfile
+        echo "Run go build -o main" >> Dokerfile
+        echo "FROM ubuntu:latest" >> Dockerfile
+        echo "WORKDIR /app" >> DockerFile
+        echo "COPY --from=builder /go/src/app/main app/" >> Dockerfile
+        echo "CMD ["echo", "Die Ausführung des Containers wurde abgeschlossen."]" >> Dockerfile
        
         
     - name: Build Docker
@@ -106,12 +106,12 @@ jobs:
       run : | 
            echo "FROM golang:latest  AS builder" >> Dockerfile
            echo "WORKDIR /go/src/app" >> Dockerfile
-           echo "COPY . ."
-           echo "Run go build -o main"
-           echo "FROM ubuntu:latest"
-           echo "WORKDIR /app"
-           echo "COPY --from=builder /go/src/app/main app/"
-           echo "CMD ["echo", "Die Ausführung des Containers wurde abgeschlossen."]"
+           echo "COPY . ." >> Dockerfile
+           echo "Run go build -o main" >> Dockerfile
+           echo "FROM ubuntu:latest" >> Dockerfile
+           echo "WORKDIR /app" >> Dockerfile
+           echo "COPY --from=builder /go/src/app/main app/" >> Dockerfile
+           echo "CMD ["echo", "Die Ausführung des Containers wurde abgeschlossen."]" >> Dockerfile
            
     # run: |
      #   echo "FROM ubuntu:latest" >> Dockerfile
