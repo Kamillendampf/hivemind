@@ -47,6 +47,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up Go
+      uses: actions/setup-go@v4
+
+    - name: Build GoApp
+      run: |
+          go build -o run
+          
     - name: Create Dockerfile
       run: |
         echo "FROM golang:latest" >> Dockerfile
