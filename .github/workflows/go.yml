@@ -83,7 +83,12 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.TOKEN }}
-
+        
+  upload:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@v4
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
