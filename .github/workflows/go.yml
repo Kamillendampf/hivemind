@@ -56,10 +56,14 @@ jobs:
 
     - name: Create Dockerfile
       run: |
-        echo "FROM golang:latest" >> Dockerfile
-        echo "WORKDIR /app" >> Dockerfile
-        echo "COPY main ."
-        echo "CMD ["run"]" >> Dockerfile
+        echo "FROM golang:latest  AS builder" >> Dockerfile
+        echo "WORKDIR /go/src/app" >> Dockerfile
+        echo "COPY . ."
+        echo "Run go build -o main"
+        echo "FROM ubuntu:latest"
+        echo "WORKDIR /app"
+        echo "COPY --from=builder /go/src/app/main ."
+        echo "CMD ["./main"]" >> Dockerfile
         
     - name: Build Docker
       run: |
