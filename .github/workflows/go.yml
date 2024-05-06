@@ -62,7 +62,7 @@ jobs:
         echo "Run go build -o main"
         echo "FROM ubuntu:latest"
         echo "WORKDIR /app"
-        echo "COPY --from=builder /go/src/app/main ."
+        echo "COPY --from=builder /go/src/app/main app/"
         echo "RUN ls"
        
         
@@ -103,12 +103,21 @@ jobs:
           go build -o run
           
     - name: Create Dockerfile
-      run: |
-        echo "FROM ubuntu:latest" >> Dockerfile
-        echo "WORKDIR /app" >> Dockerfile
-        echo "COPY run /app/"
-        echo "CMD [\"/bin/bash\"]" >> Dockerfile
-        echo "CMD [\"/app/run\"]" >> Dockerfile
+      run : | 
+           echo "FROM golang:latest  AS builder" >> Dockerfile
+           echo "WORKDIR /go/src/app" >> Dockerfile
+           echo "COPY . ."
+           echo "Run go build -o main"
+           echo "FROM ubuntu:latest"
+           echo "WORKDIR /app"
+           echo "COPY --from=builder /go/src/app/main app/"
+           echo "RUN ls" 
+    # run: |
+     #   echo "FROM ubuntu:latest" >> Dockerfile
+      #  echo "WORKDIR /app" >> Dockerfile
+       # echo "COPY run /app/"
+        #echo "CMD [\"/bin/bash\"]" >> Dockerfile
+        #echo "CMD [\"/app/run\"]" >> Dockerfile
         
     - name: Build Docker
       run: |
