@@ -49,7 +49,7 @@ jobs:
 
     - name: Create Dockerfile
       run: |
-        echo "FROM ubuntu:latest" >> Dockerfile
+        echo "FROM golang:latest" >> Dockerfile
         echo "WORKDIR /app" >> Dockerfile
         echo "COPY run /app/"
         echo "CMD [\"/app/run\"]" >> Dockerfile
