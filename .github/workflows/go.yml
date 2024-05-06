@@ -52,14 +52,14 @@ jobs:
 
     - name: Build GoApp
       run: |
-          go build -o run
-          
+          go build -o main
+
     - name: Create Dockerfile
       run: |
         echo "FROM golang:latest" >> Dockerfile
         echo "WORKDIR /app" >> Dockerfile
-        echo "COPY run /app/"
-        echo "CMD [\"/app/run\"]" >> Dockerfile
+        echo "COPY main ."
+        echo "CMD [\"./run\"]" >> Dockerfile
         
     - name: Build Docker
       run: |
