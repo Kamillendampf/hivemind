@@ -64,7 +64,7 @@ jobs:
         echo "WORKDIR /app"
         echo "COPY --from=builder /go/src/app/main ."
         echo "RUN ls"
-        echo "CMD [\"/app/run\"]" >> Dockerfile
+       
         
     - name: Build Docker
       run: |
