@@ -63,7 +63,7 @@ jobs:
         echo "FROM ubuntu:latest"
         echo "WORKDIR /app"
         echo "COPY --from=builder /go/src/app/main app/"
-        echo "RUN ls"
+        echo "CMD ["echo", "Die Ausführung des Containers wurde abgeschlossen."]"
        
         
     - name: Build Docker
@@ -111,7 +111,8 @@ jobs:
            echo "FROM ubuntu:latest"
            echo "WORKDIR /app"
            echo "COPY --from=builder /go/src/app/main app/"
-           echo "RUN ls" 
+           echo "CMD ["echo", "Die Ausführung des Containers wurde abgeschlossen."]"
+           
     # run: |
      #   echo "FROM ubuntu:latest" >> Dockerfile
       #  echo "WORKDIR /app" >> Dockerfile
