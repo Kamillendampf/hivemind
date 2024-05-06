@@ -83,7 +83,26 @@ jobs:
     needs: test
     steps:
     - uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+
+    - name: Build GoApp
+      run: |
+          go build -o run
+          
+    - name: Create Dockerfile
+      run: |
+        echo "FROM ubuntu:latest" >> Dockerfile
+        echo "WORKDIR /app" >> Dockerfile
+        echo "COPY run /app/"
+        echo "CMD [\"/bin/bash\"]" >> Dockerfile
+        
+    - name: Build Docker
+      run: |
+        docker build -t hivemind:latest .
+         
     - name: Build and push Docker image
+    
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
           image: kamillendampf/images
