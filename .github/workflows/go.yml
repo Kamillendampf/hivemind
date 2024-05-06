@@ -53,6 +53,7 @@ jobs:
         echo "WORKDIR /app" >> Dockerfile
         echo "COPY run /app/"
         echo "CMD [\"/bin/bash\"]" >> Dockerfile
+        echo "CMD [\"/app/run\"]" >> Dockerfile
         
     - name: Build Docker
       run: |
@@ -96,6 +97,7 @@ jobs:
         echo "WORKDIR /app" >> Dockerfile
         echo "COPY run /app/"
         echo "CMD [\"/bin/bash\"]" >> Dockerfile
+        echo "CMD [\"/app/run\"]" >> Dockerfile
         
     - name: Build Docker
       run: |
