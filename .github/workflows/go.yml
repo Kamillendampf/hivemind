@@ -77,12 +77,6 @@ jobs:
          #   echo "The code coverage is currently by $coverage%/100%, but it required $required_coverag% Code Coverage.
           #  exit 1
         #fi
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.TOKEN }}
         
   upload:
     runs-on: ubuntu-latest
