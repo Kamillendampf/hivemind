@@ -59,7 +59,7 @@ jobs:
         echo "FROM golang:latest" >> Dockerfile
         echo "WORKDIR /app" >> Dockerfile
         echo "COPY main ."
-        echo "CMD [\"./main\"]" >> Dockerfile
+        echo "CMD ["run"]" >> Dockerfile
         
     - name: Build Docker
       run: |
